@@ -1,5 +1,9 @@
 import requests
 import json
+import os
+from dotenv import load_dotenv
+load_dotenv() 
+
 
 # def ocr_space_file(filename, overlay=False, api_key='helloworld', language='eng'):
 #     payload = {
@@ -14,7 +18,7 @@ import json
 #     result = r.content.decode()
 #     return json.loads(result)
 
-def ocr_space_url(url, overlay=False, api_key='K83551900988957', language='eng'):
+def ocr_space_url(url, overlay=False, api_key= os.getenv("api_key"), language='eng'):
     payload = {
         'url': url,
         'isOverlayRequired': overlay,

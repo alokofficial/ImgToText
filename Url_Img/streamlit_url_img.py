@@ -1,9 +1,13 @@
 import streamlit as st
 import requests
 import json
+import os
+from dotenv import load_dotenv
+load_dotenv() 
+
 
 # Function to interact with the OCR API
-def ocr_space_url(url, overlay=False, api_key='K83551900988957', language='eng'):
+def ocr_space_url(url, overlay=False, api_key=os.getenv("api_key"), language='eng'):
     payload = {
         'url': url,
         'isOverlayRequired': overlay,
@@ -63,3 +67,7 @@ if image_url:
     # Display the extracted text in green color
     st.write("Extracted Text:")
     st.markdown(f"<div class='extracted-text'>{extracted_text}</div>", unsafe_allow_html=True)
+
+
+
+    #3551900988957

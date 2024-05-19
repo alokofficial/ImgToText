@@ -2,6 +2,7 @@ import streamlit as st
 import requests
 import json
 
+# Function to interact with the OCR API
 def ocr_space_url(url, overlay=False, api_key='K83551900988957', language='eng'):
     payload = {
         'url': url,
@@ -13,6 +14,7 @@ def ocr_space_url(url, overlay=False, api_key='K83551900988957', language='eng')
     result = r.content.decode()
     return json.loads(result)
 
+# Function to extract text from the OCR result
 def extract_text(parsed_result):
     if 'ParsedResults' in parsed_result and len(parsed_result['ParsedResults']) > 0:
         parsed_text = parsed_result["ParsedResults"][0]["ParsedText"]
@@ -21,6 +23,24 @@ def extract_text(parsed_result):
         return extracted_text
     else:
         return "No text found in OCR result"
+
+# Apply custom CSS to change the background color
+st.markdown(
+    """
+    <style>
+    .stApp {
+        background-color: #808000;
+    }
+    .extracted-text {
+        color: green;
+        background-color: white;
+        white-space: pre-wrap;
+        
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
 
 # Streamlit application
 st.title("OCR Space URL Text Extractor")
@@ -40,8 +60,6 @@ if image_url:
     # Extract text from the OCR result
     extracted_text = extract_text(ocr_result)
 
-    # Display the extracted text
+    # Display the extracted text in green color
     st.write("Extracted Text:")
-    st.text(extracted_text)
-
-
+    st.markdown(f"<div class='extracted-text'>{extracted_text}</div>", unsafe_allow_html=True)

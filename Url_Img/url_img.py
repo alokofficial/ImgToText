@@ -39,7 +39,7 @@ def extract_text(parsed_result):
 
 # Use examples:
 # test_file_result = ocr_space_file(filename='./example_image.png', language='pol')
-test_url_result = ocr_space_url(url='https://www.socialpilot.co/wp-content/uploads/2023/02/MEME.webp' , language='eng')
+test_url_result = ocr_space_url(url='https://i.redd.it/56cnisa9qyia1.jpg' , language='eng')
 
 # Extract and print the specific text from the file result
 # file_text = extract_text(test_file_result)

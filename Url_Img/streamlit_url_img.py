@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 load_dotenv() 
 
 
-# Function to interact with the OCR API
+# Function to interact with the OCR API.
 def ocr_space_url(url, overlay=False, api_key=os.getenv("api_key"), language='eng'):
     payload = {
         'url': url,
@@ -18,7 +18,7 @@ def ocr_space_url(url, overlay=False, api_key=os.getenv("api_key"), language='en
     result = r.content.decode()
     return json.loads(result)
 
-# Function to extract text from the OCR result
+# Function to extract text from the OCR result.
 def extract_text(parsed_result):
     if 'ParsedResults' in parsed_result and len(parsed_result['ParsedResults']) > 0:
         parsed_text = parsed_result["ParsedResults"][0]["ParsedText"]
@@ -28,7 +28,7 @@ def extract_text(parsed_result):
     else:
         return "No text found in OCR result"
 
-# Apply custom CSS to change the background color
+# Apply custom CSS to change the background color.
 st.markdown(
     """
     <style>
@@ -36,7 +36,7 @@ st.markdown(
         background-color: #808000;
     }
     .extracted-text {
-        color: green;
+        color: cyan;
         background-color: white;
         white-space: pre-wrap;
         
